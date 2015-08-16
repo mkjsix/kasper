@@ -1,0 +1,38 @@
+---
+layout: post
+title: "Managing Multiple JDK on Mac OS X"
+date: 2012-04-10T01:10:00+02:00
+comments: true
+sharing: true
+redirect_from:
+ - /2012/04/managing-multiple-jdk-on-mac-os-x.html
+categories:
+ - technology
+---
+<div class='post'>
+    Recently I had to install the&nbsp;<a href="http://en.wikipedia.org/wiki/OpenJDK" target="_blank">OpenJDK</a> 7 on my Apple MacBook, but keeping the original JDK 6 as my main Java environment. After browsing the Internet I came to a decent set of instructions (Tested with OS X Lion 10.7.3).
+    <br />
+    <br /><span style="font-size: large;">In summary:</span>
+    <br />
+    <ol>
+        <li><strike>Get the OpenJDK from&nbsp;<a href="http://code.google.com/p/openjdk-osx-build/">http://code.google.com/p/openjdk-osx-build/</a>&nbsp;(I chose&nbsp;<a href="http://code.google.com/p/openjdk-osx-build/wiki/OpenJDK7JDK7U4" target="_blank">JDK 7u4</a>, which at present seems to be the latest stable build);</strike>&nbsp;The JDK 7 is now a regular download by Oracle:&nbsp;<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>
+        </li>
+        <li>Install the downloaded <span style="font-family: 'Courier New', Courier, monospace;">.dmg</span> package;</li>
+        <li>Change your Java Preferences&nbsp;accordingly, by moving on top the "OpenJDK 7" item (by default Java SE 6 is the first item - see below picture);</li>
+        <li>Automatically set the&nbsp;<span style="font-family: 'Courier New', Courier, monospace;">JAVA_HOME</span>&nbsp;variable, so that shell tools work.</li>
+    </ol>
+    <div class="separator" style="clear: both; text-align: center;">
+        <a href="http://4.bp.blogspot.com/-rNhiIFMJXXU/T4Nk8zXMX-I/AAAAAAAAAT4/L7YTRC9x6fU/s1600/Schermata+04-2456028+alle+00.36.50.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="492" src="http://4.bp.blogspot.com/-rNhiIFMJXXU/T4Nk8zXMX-I/AAAAAAAAAT4/L7YTRC9x6fU/s640/Schermata+04-2456028+alle+00.36.50.png" width="640" />
+        </a>
+    </div>
+    <div>To automatically setup the <span style="font-family: 'Courier New', Courier, monospace;">JAVA_HOME</span> variable it's necessary to add few lines to the <span style="font-family: 'Courier New', Courier, monospace;">.profile</span>.</div>
+    <div>So, edit this file (it's in your home directory) adding the following lines:</div>
+    <div>
+        <br />
+    </div><pre class="brush: bash"># Change your JAVA_HOME<br />function setjdk() {<br />   if [ $# -ne 0 ];<br />      then export JAVA_HOME=`/usr/libexec/java_home -v $@`;<br />   fi;<br />   java -version;<br />}<br /># Automatically set the JAVA_HOME<br />export JAVA_HOME=`/usr/libexec/java_home` <br />echo 'JAVA_HOME='$JAVA_HOME<br /></pre>
+    <br />Note that the optional&nbsp;<span style="font-family: 'Courier New', Courier, monospace;">setjdk</span> function allows for&nbsp;dynamically&nbsp;changing the <span style="font-family: 'Courier New', Courier, monospace;">JAVA_HOME</span> if you switch items in your "Java Preferences", otherwise many Java tools won't work if <span style="font-family: 'Courier New', Courier, monospace;">JAVA_HOME</span> is not in synch with the System settings.
+    <br />
+    <br />Whenever you change the default JDK using the "Java Preferences" tool, then any new terminal will automatically pick-up the new <span style="font-family: 'Courier New', Courier, monospace;">JAVA_HOME</span> by executing <span style="font-family: 'Courier New', Courier, monospace;">/usr/libexec/java_home</span>, so executing the&nbsp;<span style="font-family: 'Courier New', Courier, monospace;">setjdk</span>&nbsp;function is not usually necessary, unless you really don't want to close and re-open the terminal (opening the terminal reloads the <span style="font-family: 'Courier New', Courier, monospace;">.profile</span>).&nbsp;Alternatively issue the command <span style="font-family: 'Courier New', Courier, monospace;">source .profile</span> in you shell.
+    <br />
+    <br />That's it, now you can install multiple JDKs and select them&nbsp;dynamically, by just using the "Java Preferences" tool, without touching any system file by hand.
+</div>

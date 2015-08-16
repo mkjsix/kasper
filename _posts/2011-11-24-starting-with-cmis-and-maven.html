@@ -1,0 +1,68 @@
+---
+layout: post
+title: "Starting with CMIS and Maven"
+date: 2011-11-24T11:41:00+01:00
+comments: true
+sharing: true
+redirect_from:
+ - /2011/11/starting-with-cmis-and-maven.html
+categories:
+ - technology
+---
+<div class='post'>
+    <p>
+    This post aims to be an short how-to for setting up a&nbsp;<a href="http://en.wikipedia.org/wiki/Content_Management_Interoperability_Services" target="_blank">CMIS</a> development environment based on <a href="http://maven.apache.org/" target="_blank">Maven</a> and <a href="http://chemistry.apache.org/" target="_blank">Apache Chemistry</a>, specifically the OpenCMIS Java API, part of the Chemistry project.</p>
+    <p>I won't cover Maven installation and configuration here, so I assume you have Maven 2 or 3 <a href="http://maven.apache.org/run-maven/index.html" target="_blank">up and running</a>. With Maven you'll be independent from any specific IDE, so that you can manage your development cycle from the command line only.
+    </p>
+
+    <h3>Glossary</h3>
+    <ul>
+        <li><a href="http://en.wikipedia.org/wiki/Content_Management_Interoperability_Services" target="_blank">CMIS</a> (<a href="http://en.wikipedia.org/wiki/Content_Management_Interoperability_Services" target="_blank">Content Management Interoperability Services</a>) =&gt;"is a specification for improving interoperability between Enterprise Content Management systems. OASIS, a web standards consortium, approved CMIS as an OASIS Specification on May 1, 2010.&nbsp;CMIS provides a common data model covering typed files, folders with generic properties that can be set or read. In addition there may be an access control system, and a checkout and version control facility, and the ability to define generic relations. There is a set of generic services for modifying and querying the data model, and several protocol bindings for these services, including SOAP and Representational State Transfer (REST), using the Atom convention. The model is based on common architectures of document management systems."</li>
+        <li><a href="http://chemistry.apache.org/" target="_blank">Apache Chemistry</a> =&gt; "Apache Chemistry provides open source implementations of the Content Management Interoperability Services (CMIS) specification.</li>
+        <li><a href="http://chemistry.apache.org/java/opencmis.html" target="_blank">OpenCMIS</a> =&gt; "Apache Chemistry OpenCMIS is a collection of Java libraries, frameworks and tools around the CMIS specification.&nbsp;The goal of OpenCMIS is to make CMIS simple for Java client and server developers. It hides the binding details and provides APIs and SPIs on different abstraction levels. It also includes test tools for content repository developers and client application developers."</li>
+        <li>Apache <a href="http://maven.apache.org/" target="_blank">Maven</a> =&gt; "Apache Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information."</li>
+    </ul>
+
+    <h3>Ingredients</h3>
+
+    <ol>
+        <li>A simple text editor or any decent Java IDE&nbsp;</li>
+        <li>Maven 2 or 3</li>
+        <li>A CMIS server for real-world testing</li>
+    </ol>
+    <p>In my case I'm using IntelliJ IDEA, which is excellent. I'm an old <a href="http://netbeans.org/" target="_blank">Netbeans</a> guy and both IDEs offer superior Maven integration, but it happens that I'm just having a look at IntelliJ these days.</p>
+
+    <p>To cover point # 3 I have selected the reference CMIS server implementation so far, which is&nbsp;<a href="http://alfresco.com/" target="_blank">Alfresco</a>. &nbsp;OpenCMIS offers a basic CMIS server implementation for your self-contained unit tests, but for end-to-end integration testing I prefer to link to a real ECM system.</p>
+
+    <p>You can download the latest Alfresco Community Edition for free from <a href="http://wiki.alfresco.com/wiki/Download_Community_Edition" target="_blank">here</a>. At present the brand new 4.0 is available.</p>
+
+    <h3>Setup</h3>
+
+    <p><i>Note: I won't cover Alfresco's installation and configuration here because it's not in the scope of this post. You can already find plenty of&nbsp;<a href="http://docs.alfresco.com/4.0/index.jsp" target="_blank">excellent online resources</a> for that.</i>
+    </p>
+
+    <p>Just open a shell, place into a folder and run the following Maven command, to create a very basic Java project through the <a href="http://maven.apache.org/archetype/maven-archetype-bundles/maven-archetype-quickstart/" target="_blank">quickstart archetype</a>:
+
+    </p><pre style="background-color: #eeeeee; border: 1px dashed #999999; color: black; font-family: Andale Mono, Lucida Console, Monaco, fixed, monospace; font-size: 12px; line-height: 14px; overflow: auto; padding: 5px; width: 100%;"><code>mvn archetype:generate -DgroupId=com.myapps \<br />                       -DartifactId=my-first-cmis \<br />                       -Dversion=1.0-SNAPSHOT \<br />                       -DarchetypeArtifactId=maven-archetype-quickstart \<br />                       -DinteractiveMode=false<br /></code></pre>
+    <br />You'll end having the following usual project structure:
+    <br />
+    <br /><pre class="source-code"><code>project<br />|-- pom.xml<br />`-- src<br />    |-- main<br />    |   `-- java<br />    |       `-- App.java<br />    `-- test<br />        `-- java<br />            `-- AppTest.java<br /></code></pre>
+    <br />The pom.xml file is the center of the Maven's universe. We need to edit it for adding a few lines of XML so that we can build with OpenCMIS libraries.
+    <br />Here is the default pom.xml created by the archetype:
+    <br />
+    <br /><pre class="brush: xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"<br />xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br />xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;<br />  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br />  &lt;groupId&gt;com.myapps&lt;/groupId&gt;<br />  &lt;artifactId&gt;my-first-cmis&lt;/artifactId&gt;<br />  &lt;packaging&gt;jar&lt;/packaging&gt;<br />  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br />  &lt;name&gt;my-first-cmis&lt;/name&gt;<br />  &lt;url&gt;http://maven.apache.org&lt;/url&gt;<br />  &lt;dependencies&gt;<br />    &lt;dependency&gt;<br />      &lt;groupId&gt;junit&lt;/groupId&gt;<br />      &lt;artifactId&gt;junit&lt;/artifactId&gt;<br />      &lt;version&gt;3.8.1&lt;/version&gt;<br />      &lt;scope&gt;test&lt;/scope&gt;<br />    &lt;/dependency&gt;<br />  &lt;/dependencies&gt;<br />&lt;/project&gt;<br /></pre>
+    <br />Now we need to put the following XML snippet into pom.xml to activate the OpenCMIS libraries:
+    <br />
+    <br /><pre class="brush: xml">&lt;dependency&gt;<br />   &lt;groupId&gt;org.apache.chemistry.opencmis&lt;/groupId&gt;<br />   &lt;artifactId&gt;chemistry-opencmis-client-impl&lt;/artifactId&gt;<br />   &lt;version&gt;0.6.0&lt;/version&gt;<br />&lt;/dependency&gt;<br /></pre>
+
+    <p>At present the latest stable OpenCMIS release is 0.6.0, you can modify the pom.xml file accordingly whenever a new version is released.</p>
+
+    <h3>The final POM file</h3>
+
+    <pre class="brush: xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"<br />xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br />xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;<br />  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;<br />  &lt;groupId&gt;com.myapps&lt;/groupId&gt;<br />  &lt;artifactId&gt;my-first-cmis&lt;/artifactId&gt;<br />  &lt;packaging&gt;jar&lt;/packaging&gt;<br />  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;<br />  &lt;name&gt;my-first-cmis&lt;/name&gt;<br />  &lt;url&gt;http://maven.apache.org&lt;/url&gt;<br />  &lt;dependencies&gt;<br />    &lt;dependency&gt;<br />      &lt;groupId&gt;org.apache.chemistry.opencmis&lt;/groupId&gt;<br />      &lt;artifactId&gt;chemistry-opencmis-client-impl&lt;/artifactId&gt;<br />      &lt;version&gt;0.6.0&lt;/version&gt;<br />    &lt;/dependency&gt;<br />    &lt;dependency&gt;<br />      &lt;groupId&gt;junit&lt;/groupId&gt;<br />      &lt;artifactId&gt;junit&lt;/artifactId&gt;<br />      &lt;version&gt;3.8.1&lt;/version&gt;<br />      &lt;scope&gt;test&lt;/scope&gt;<br />    &lt;/dependency&gt;<br />  &lt;/dependencies&gt;<br />&lt;/project&gt;</pre>
+    <p>Now that your development environment is ready and you can build both from the shell and the IDE, you can start <a href="http://chemistry.apache.org/java/examples/index.html" target="_blank">exploring some examples</a>.
+    </p>
+    <p>
+        Issuing a&nbsp;<span style="font-family: 'Courier New', Courier, monospace;">mvn clean compile</span>&nbsp;command in your shell will start the process: if it's the first time you run Maven then it will try to download many dependencies, but don't worry and be patient, all successive runs will be very fast.
+    </p>
+</div>

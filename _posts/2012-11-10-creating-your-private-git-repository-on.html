@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Creating your private Git repository on Dropbox in less than 5 minutes"
+date: 2012-11-10T14:39:00+01:00
+comments: true
+sharing: true
+redirect_from:
+ - /2012/11/creating-your-private-git-repository-on.html
+categories:
+ - technology
+---
+<div class='post'>
+    <a href="https://github.com/" target="_blank">Github</a> is the tool I use daily to manage my public software projects, I love it. But sometimes I have to quickly and temporarily share private projects with colleagues or maybe even in a mixed environment, with customers and consultants from other companies.
+    When there is no time / money to buy private remote repos from Github or even install a local Git repo on some server, &nbsp;and for privacy constraints it is not possibile to&nbsp;publish&nbsp;the code on a public Github repo, then <a href="https://www.dropbox.com/" target="_blank">Dropbox</a> comes to the rescue.
+    <br />
+    <br />In this example I'm working on a simple Web application in&nbsp;<a href="http://flask.pocoo.org/" target="_blank">Flask</a>, which is a cool&nbsp;<a href="http://python.org/" target="_blank">Python</a>&nbsp;micro-framework. I created a "flask_sample" folder which contains the code I want to version with Git and share with other colleagues.
+    <br />
+    <br />I promised it will take less than 5 minutes, so let's start.
+    <br />
+    <br />Move to your Dropbox folder (in my case it's in <span style="font-family: Courier New, Courier, monospace;">/Users/mturatti/Dropbox/</span>) and create a folder to host all your remote git repositories:
+    <br />
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ cd&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">/Users/mturatti/Dropbox/</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">$&nbsp;mkdir git</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><br /></span>Then create here the folder to host this remote repository:
+    <br /><span style="font-family: Courier New, Courier, monospace;"><br /></span><span style="font-family: Courier New, Courier, monospace;">$ cd git</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ mkdir flask_sample.git</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ cd flask_sample.git</span>
+    <br />
+    <br />It's time to create a <a href="http://www.gitguys.com/topics/shared-repositories-should-be-bare-repositories/" target="_blank">bare Git repository</a>:
+    <br />
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ git init --bare</span>
+    <br />
+    <br />You'll see it creates a structure similar to the following:
+    <br />
+    <br /><span style="font-family: 'Courier New', Courier, monospace;">mturatti:~/Dropbox/git/flask_sample.git$ ls -l</span>
+    <br /><span style="font-family: 'Courier New', Courier, monospace;">total 24</span>
+    <br /><span style="font-family: 'Courier New', Courier, monospace;">-rw-r--r-- &nbsp; 1 mturatti &nbsp;staff &nbsp; 23 &nbsp;9 Nov 18:38 HEAD</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">-rw-r--r-- &nbsp; 1 mturatti &nbsp;staff &nbsp;112 &nbsp;9 Nov 18:38 config</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">-rw-r--r-- &nbsp; 1 mturatti &nbsp;staff &nbsp; 73 &nbsp;9 Nov 18:38 description</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">drwxr-xr-x &nbsp;10 mturatti &nbsp;staff &nbsp;340 &nbsp;9 Nov 18:38 hooks</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">drwxr-xr-x &nbsp; 3 mturatti &nbsp;staff &nbsp;102 &nbsp;9 Nov 18:38 info</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">drwxr-xr-x &nbsp;11 mturatti &nbsp;staff &nbsp;374 &nbsp;9 Nov 19:09 objects</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;">drwxr-xr-x &nbsp; 4 mturatti &nbsp;staff &nbsp;136 &nbsp;9 Nov 18:38 refs</span>
+    <br />
+    <br />Now you have in place a git structure which can act as a shareable remote repository, even if in practice it's local to your hard disk. <b>Being a Dropbox folder will do the magic</b> in terms of backups, sharing and synchronization.
+    <br />
+    <br />Initialize Git in your software project as usual (in my case the local project stays in&nbsp;<span style="font-family: Courier New, Courier, monospace;">/Users/mturatti/src/flask_sample)</span>
+    <br />
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ git init</span>
+    <br />
+    <br />This creates the usual hidden .git folder.
+    <br />The last configuration step is to add locally the previously created remote Git repository:
+    <br />
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ git remote add origin file:///Users/mturatti/Dropbox/git/flask_sample.git</span>
+    <br />
+    <br />Note we are using the <span style="font-family: Courier New, Courier, monospace;">file://</span> protocol for the remote Git repository here.
+    <br />If you check the content of <span style="font-family: Courier New, Courier, monospace;">.git/config</span> file you'll see the new origin (in bold below):
+    <br /><span style="font-family: 'Courier New', Courier, monospace;"><br /></span><span style="font-family: 'Courier New', Courier, monospace;">mturatti:~/src/flask_sample$ cat .git/config&nbsp;</span>
+    <br />
+    <br /><span style="font-family: Courier New, Courier, monospace;">[core]</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><span class="Apple-tab-span" style="white-space: pre;"> </span>repositoryformatversion = 0</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><span class="Apple-tab-span" style="white-space: pre;"> </span>filemode = true</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><span class="Apple-tab-span" style="white-space: pre;"> </span>bare = false</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><span class="Apple-tab-span" style="white-space: pre;"> </span>logallrefupdates = true</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><span class="Apple-tab-span" style="white-space: pre;"> </span>ignorecase = true</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><span class="Apple-tab-span" style="white-space: pre;"> </span>precomposeunicode = false</span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><b>[remote "origin"]</b></span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><b><span class="Apple-tab-span" style="white-space: pre;"> </span>url = file:///Users/mturatti/Dropbox/git/flask_sample.git</b>
+    </span>
+    <br /><span style="font-family: Courier New, Courier, monospace;"><b><span class="Apple-tab-span" style="white-space: pre;"> </span>fetch = +refs/heads/*:refs/remotes/origin/*</b>
+    </span>
+    <br />
+    <br />At this point you can start the <a href="http://git-scm.com/book/ch2-2.html" target="_blank">usual Git lifecycle</a>. For example, after you have added and committed all your files locally, you can "push to origin", which will push your code to your remote Git repository saved on Dropbox:
+    <br />
+    <br /><span style="font-family: Courier New, Courier, monospace;">$ git push origin master</span>
+    <br />
+    <br />The last step will be to <a href="https://www.dropbox.com/help/19/en" target="_blank">share the Dropbox folder</a> with your colleagues, so that they can also add this as a remote repository and start cloning / pulling / pushing from this origin.
+</div>

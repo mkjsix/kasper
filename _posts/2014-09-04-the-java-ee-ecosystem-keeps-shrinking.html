@@ -1,0 +1,53 @@
+---
+layout: post
+title: "The Java EE ecosystem keeps shrinking"
+date: 2014-09-04T13:33:00+02:00
+comments: true
+sharing: true
+redirect_from:
+ - /2014/09/the-java-ee-ecosystem-keeps-shrinking.html
+categories:
+ - opensource
+---
+<div class='post'>
+    <p>
+    Less than a year ago Oracle announced the&nbsp;<a href="https://blogs.oracle.com/theaquarium/entry/java_ee_and_glassfish_server">Java EE and GlassFish Server Roadmap Update</a>, which defined the end of commercial support for the <a href="http://www.oracle.com/us/products/middleware/cloud-app-foundation/glassfish-server/overview/index.html">Oracle Glassfish Server</a>
+    , which is (was) the fully supported release of the <a href="https://glassfish.java.net/">GlassFish Server Open Source Edition</a>. In the last few months there has been plenty of comments about this move, some of the most remarkable are:
+    </p>
+    <ul>
+        <li><a href="http://jaxenter.com/glassfish-reduced-to-toy-product-as-commercial-offering-axed-48729.html">GlassFish reduced to “toy product” as commercial offering axed</a>
+        </li>
+        <li><a href="http://blog.arungupta.me/2013/11/glassfish-commercial-is-dead-wildfly-and-jboss-eap-to-rescue/comment-page-1/#comment-63611">GlassFish Commercial is Dead, WildFly and JBoss EAP to the Rescue</a>
+        </li>
+        <li><a href="https://twitter.com/arungupta/status/405392239020359681">Oracle removed GlassFish plugin for Eclipse</a>
+        </li>
+    </ul>
+    <p>The motivation around this move are probably about Oracle not being keen on supporting two full app server implementations, Glassfish and Weblogic, which apparently makes sense from a commercial point of view. The problem here is that the two products are <b>very different</b>, and if you liked Glassfish usually hated Weblogic (but has somebody ever genuinely liked Weblogic anyway?). Glassfish is a lightweight, easy to install, fast to start, open source product, with a community around, while Weblogic is IMO one of the most bloated piece of software ever: the two products were addressing two very different Java EE markets, being Weblogic's the most lucrative one.</p>
+
+    <p>A <a href="https://blogs.oracle.com/theaquarium/entry/java_ee_and_glassfish_server#comment-1383630673031">reply to community's concerns</a>, apparently from an Oracle representative:
+    </p>
+
+    <blockquote class="tr_bq">"... GlassFish and WebLogic share quite a bit of code, and that helps with application and configuration portability between the two. So, organizations can <i>continue to develop on GlassFish</i> and leverage that development by <i>deploying on WebLogic</i>."</blockquote>
+
+    <p>This is one of the <b>most laughable sentences I have read in years</b>: can anyone seriously think a company could develop and test in one application server but then deploy in production with another? Can anyone really assert that Glassfish and Weblogic are that similar? Just try to install both and judge yourself: you could start developing your first Glassfish application while Weblogic installer is still downloading...</p>
+    <p>Glassfish has always been a minor commercial player, but reducing the available options has never been a successful strategy for any ecosystem, and Oracle is supposed to lead this one. Below are the results of this leadership:</p>
+
+    <div style="width: 540px;">
+        <a href="http://www.indeed.com/jobtrends?q=glassfish%2C+jboss%2C+weblogic%2C+websphere" title="glassfish, jboss, weblogic, websphere Job Trends"><img alt="glassfish, jboss, weblogic, websphere Job Trends graph" border="0" src="http://www.indeed.com/trendgraph/jobgraph.png?q=glassfish%2C+jboss%2C+weblogic%2C+websphere" height="300" width="540" />
+        </a>
+        <br />
+        <table border="0" cellpadding="6" cellspacing="0" style="font-size: 80%; width: 100%px;">
+            <tbody>
+                <tr>
+                    <td><a href="http://www.indeed.com/jobtrends?q=glassfish%2C+jboss%2C+weblogic%2C+websphere">glassfish, jboss, weblogic, websphere Job Trends</a>
+                    </td>
+                    <td align="right"><a href="http://www.indeed.com/jobs?q=Glassfish">Glassfish jobs</a> - <a href="http://www.indeed.com/jobs?q=Jboss">Jboss jobs</a> - <a href="http://www.indeed.com/jobs?q=Weblogic">Weblogic jobs</a> - <a href="http://www.indeed.com/jobs?q=Websphere">Websphere jobs</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />If you care about open source but want / need to deploy into a commercially supported Java EE app server, you now have basically only a couple of options left: RedHat's&nbsp;<a href="http://www.jboss.org/products/eap/overview/">JBoss EAP</a>&nbsp;and&nbsp;<a href="http://www.tomitribe.com/">Tomtribe</a>'s&nbsp;<a href="http://tomee.apache.org/apache-tomee.html">TomEE</a>. Despite both are fine options, pulling out a minor but strategic member doesn't help arresting the progressive shrinking of the Java EE ecosystem, as differentiation and competition are king.
+    <br />
+    <br />This is a pity, because&nbsp;<a href="http://www.adam-bien.com/roller/abien/entry/javaone_session_lean_and_opinionated">Java EE is becoming more and more lean and easy</a>.
+</div>
