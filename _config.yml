@@ -5,7 +5,7 @@ meta_description: "Software Design and Architecture"
 markdown: redcarpet
 highlighter: pygments
 logo: false
-paginate: 9
+paginate: 5
 
 baseurl: /
 domain_name: 'http://www.maurizioturatti.com'
