@@ -7,6 +7,10 @@ highlighter: pygments
 logo: false
 paginate: 5
 
+root: /
+permalink: /blog/:year/:month/:day/:title/
+category_dir: blog/categories
+
 gems:
  - jekyll-redirect-from
  - jekyll-sitemap
