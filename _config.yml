@@ -10,6 +10,7 @@ paginate: 5
 gems:
  - jekyll-redirect-from
  - jekyll-sitemap
+ - jekyll-feed
 
 baseurl: /
 domain_name: 'http://www.maurizioturatti.com'
