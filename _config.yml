@@ -7,6 +7,10 @@ highlighter: pygments
 logo: false
 paginate: 5
 
+gems:
+ - jekyll-redirect-from
+ - jekyll-sitemap
+
 baseurl: /
 domain_name: 'http://www.maurizioturatti.com'
 google_analytics: 'UA-43544427-1'
