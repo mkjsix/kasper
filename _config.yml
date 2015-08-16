@@ -1,6 +1,6 @@
-name: Your New Jekyll Site
-description: Blogging about stuffs
-meta_description: "Your New Jekyll Site, Blogging about stuffs"
+name: CamelCase
+description: Maurizio Turatti's Blog
+meta_description: "Software Design and Architecture"
 
 markdown: redcarpet
 highlighter: pygments
@@ -8,9 +8,9 @@ logo: false
 paginate: 9
 
 baseurl: /
-domain_name: 'http://yourblog-domain.com'
-google_analytics: 'UA-XXXXXXXX-X'
+domain_name: 'http://www.maurizioturatti.com'
+google_analytics: 'UA-43544427-1'
 
 # Details for the RSS feed generator
-url:            'blog url'
-author:         'Your Name'
+url:            'http://www.maurizioturatti.com'
+author:         'Maurizio Turatti'
