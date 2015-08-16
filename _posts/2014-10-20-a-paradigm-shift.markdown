@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "A paradigm shift"
-date: 2014-10-20 00:56:59 +0200
+date: 2014-10-20T00:56
 comments: true
 sharing: true
 ---
 
-After three decades of software development and about twenty years of professional experience across Europe and Middle East, now I'm a partner and consultant at a new venture, the [__Soft__Instigate](http://www.softinstigate.com) Team. We decided to start a new software company because we felt the urgency of a new paradigm shift 
+After three decades of software development and about twenty years of professional experience across Europe and Middle East, now I'm a partner and consultant at a new venture, the [__Soft__Instigate](http://www.softinstigate.com) Team. We decided to start a new software company because we felt the urgency of a new paradigm shift
 
 > Six decades into the computer revolution, four decades since the invention of the microprocessor, and two decades into the rise of the modern Internet, all of the technology required to transform industries through software finally works and can be widely delivered at global scale.
 
