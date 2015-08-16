@@ -10,7 +10,7 @@ categories:
 ---
 I was recently reading a report explaining that, in some circumstances, [PostgreSQL outperforms MongoDB](http://blogs.enterprisedb.com/2014/09/24/postgres-outperforms-mongodb-and-ushers-in-new-developer-reality/) in many key areas, and this made me think a bit about the rationales behind different choices among data storage options, especially related to - unfortunately frequent - naive comparisons between SQL and NoSQL solutions.
 
-{% img center http://www.enterprisedb.com/sites/default/files/images/MongoDB_26_v_Postgres_94_Performance.png 460 358 'MongoDB vs PostgreSQL' %}
+<img src="http://www.enterprisedb.com/sites/default/files/images/MongoDB_26_v_Postgres_94_Performance.png" alt="MongoDB vs PostgreSQL" height="358" width="460">
 
 Besides the obvious fact that the above benchmark was created by EnterpriseDB, which is the commercial entity developing PostgreSQL (so it could be a little biased...), I'm already aware that PostgreSQL is an amazing product, to the point that I'd recommend it as one of the best solutions for most data storage problems one has to solve. Well known Enterprises with non-trivial performance needs are already [investing heavily on PostgreSQL](http://gotocon.com/berlin-2013/presentation/Why%20Zalando%20trusts%20in%20PostgreSQL).
 
@@ -22,7 +22,7 @@ I want to put some intentional emphasis on the sentence _in certain types of app
 
 Instead,
 
-> a document database could be a better solution than a relational one when entities are mostly associated under a tree-like structure and a relational model would force to continuously create joins or to heavily denormalize relationships, beyond what would be rational. 
+> a document database could be a better solution than a relational one when entities are mostly associated under a tree-like structure and a relational model would force to continuously create joins or to heavily denormalize relationships, beyond what would be rational.
 
 In case the data model respects the above constraints, then a document-oriented structure is capable of creating much less mismatch with an object-oriented design than a relational model. As we know, all non-trivial relational database schema create an amount of attrition with object models, the infamous [Object-relational impedance mismatch](http://en.wikipedia.org/wiki/Object-relational_impedance_mismatch) problem. Object-oriented systems are usually tree-like structures, which fit a document database much better than other models except for [graph databases](http://en.wikipedia.org/wiki/Graph_database), which obviously can implement the most general representation of a graph.
 
@@ -31,4 +31,3 @@ When moving out of the SQL domain, I'd always suggest to not underestimate that 
 I'm not saying you should not adopt new technologies, as I and my company [are working with many of them already](http://restheart.org), but my final suggestion is:
 
 > adopt the data storage solution which best fits your domain model, and forget premature performance pseudo-optimizations: [you are probably trying to solve the wrong problem](http://www.azarask.in/blog/post/the-wrong-problem/).
-

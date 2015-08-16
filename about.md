@@ -5,7 +5,7 @@ title: Maurizio Turatti
 
 _Programmer, biker, traveller._
 
-{% img /assets/images/2013-04-27-harley.jpg %}
+<img src="/assets/images/2013-04-27-harley.jpg" alt="About me">
 
 When I was fourteen I started playing with a real computer, a Commodore 64. It was 1984 and I decided that I would become a programmer. I've never looked back.
 
@@ -21,7 +21,7 @@ You can learn more about me also reading [my old blog](http://camelcase.blogspot
 
 ### Book
 
-[{% img left https://www.packtpub.com/sites/default/files/7600OS.jpg 302 373 %}](https://www.packtpub.com/application-development/instant-apache-maven-starter-instant)
+<img src="https://www.packtpub.com/sites/default/files/7600OS.jpg" alt="Maven Book" height="373" width="302">
 
 ####[Instant Apache Maven Starter](https://www.packtpub.com/application-development/instant-apache-maven-starter-instant)
 Get started with the fundamentals of developing Java projects with Apache Maven.
