@@ -5,8 +5,6 @@ title: Maurizio
 
 _Programmer, traveller, lazy runner._
 
-<img src="/assets/images/2013-04-27-harley.jpg" alt="About me">
-
 ### Bio
 
 I'm a software architect and developer. I've worked all around Europe and the Middle East, as a freelancer or as an employee, with companies like SeeBeyond, Sun Microsystems, Alfresco, Sourcesense and AKQA.
@@ -18,6 +16,8 @@ Building software is, above all, about working with people. On this regard, I be
 I recently co-founded a [company](http://www.softinstigate.com/). We have a strict no-assholes policy there.
 
 You can know a bit more about me looking at my [LinkedIn profile](https://www.linkedin.com/in/maurizioturatti) and [GitHub repository](https://github.com/mkjsix).
+
+<img src="/assets/images/2013-04-27-harley.jpg" alt="About me">
 
 ### Contacts
 
