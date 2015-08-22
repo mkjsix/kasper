@@ -11,11 +11,13 @@ _Programmer, traveller, lazy runner._
 
 I'm a software architect and developer. I've worked all around Europe and the Middle East, as a freelancer or as an employee, with companies like SeeBeyond, Sun Microsystems, Alfresco, Sourcesense and AKQA.
 
-My  main areas of interest are around distributed systems, integration architecture, software design patterns and operations automation.
+My main areas of interest are around distributed systems, integration architecture, software design patterns and operations automation.
 
-I recently co-founded a company called [SoftInstigate](http://www.softinstigate.com/it/).
+Building software is, above all, about working with people. On this regard, I believe trust, respect and open communication are way more important than any technology.
 
-You can learn more about me looking at my [LinkedIn profile](https://www.linkedin.com/in/maurizioturatti) and at my [GitHub repository](https://github.com/mkjsix).
+I recently co-founded a [company](http://www.softinstigate.com/). We have a strict no-assholes policy there.
+
+You can know a bit more about me looking at my [LinkedIn profile](https://www.linkedin.com/in/maurizioturatti) and [GitHub repository](https://github.com/mkjsix).
 
 ### Contacts
 
@@ -42,3 +44,10 @@ Joint Research Centre, Space Applications Institute Environment and Geo-Informat
 June 13, 2001
 
 _"For an efficient exploration of integrated remote sensing and GIS datasets of high dimensionality, virtual reality technology is likely to offer much promise in the future and is likely to become indispensable alongside developments in 3-dimensional visualisation techniques. The aim of this study was to investigate how new and emerging technologies may be used to provide improved visualisation of geographic data and new distributed services and systems."_
+
+### Recent open-source projects
+
+* [RESTHeart - REST APIs Java server for MongoDB](https://github.com/SoftInstigate/restheart)
+* [Vagrant boxes for RESTHeart](https://github.com/SoftInstigate/restheart-vagrant)
+* [Docker container for RESTHeart](https://hub.docker.com/r/softinstigate/restheart/)
+* [Redis failover](https://github.com/uolter/redis_failover) based on Python and Apache ZooKeeper.
