@@ -24,7 +24,9 @@ You can learn more about me looking at my [LinkedIn profile](https://www.linkedi
 
 ### Publications
 
+<a href="https://www.packtpub.com/application-development/instant-apache-maven-starter-instant">
 <img src="https://www.packtpub.com/sites/default/files/7600OS.jpg" alt="Maven Book" height="373" width="302">
+</a>
 
 #### [Instant Apache Maven Starter](https://www.packtpub.com/application-development/instant-apache-maven-starter-instant)
 
